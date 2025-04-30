@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Bliss - Wisata Bahari Terbaik</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --primary-green: #34a853;
+            --secondary-green: #0f9d58;
+            --light-green: #e6f4ea;
+            --dark: #202124;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0d5bba;
+            border-color: #0d5bba;
+        }
+        
+        .btn-success {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+        
+        .btn-success:hover {
+            background-color: #2d8e4a;
+            border-color: #2d8e4a;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-title {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        .card-text {
+            color: #555;
+        }
+        
+        .price-tag {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+        
+        .gallery-item {
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-top: 15px;
+        }
+        
+        .booking-section {
+            background-color: var(--light-blue);
+            padding: 60px 0;
+        }
+        
+        .booking-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.25rem rgba(26, 115, 232, 0.25);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: white;
+            text-decoration: none;
+            transform: translateX(5px);
+        }
+        
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: var(--light-green);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Carousel customization */
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+        
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-water me-2"></i>Ocean Bliss
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinasi">Destinasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeri">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimoni">Testimoni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pemesanan">Pemesanan</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <h1 class="hero-title">Jelajahi Keindahan Bawah Laut</h1>
+            <p class="hero-subtitle">Temukan pengalaman tak terlupakan di destinasi wisata bahari terbaik</p>
+            <a href="#pemesanan" class="btn btn-primary btn-lg me-2"><i class="fas fa-calendar-check me-2"></i>Pesan Sekarang</a>
+            <a href="#destinasi" class="btn btn-success btn-lg"><i class="fas fa-map-marked-alt me-2"></i>Lihat Destinasi</a>
+        </div>
+    </section>
+
+    <!-- Image Slider -->
+    <section class="py-5">
+        <div class="container">
+            <div id="destinationCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#destinationCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#destinationCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#destinationCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner rounded-3">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" class="d-block w-100" alt="Pantai 1" height="500">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                            <h5>Pantai Pasir Putih</h5>
+                            <p>Pasir putih halus dan air laut jernih yang memukau</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1439405326854-014607f694d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="Pantai 2" height="500">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                            <h5>Pulau Karang Indah</h5>
+                            <p>Spot snorkeling terbaik dengan terumbu karang yang masih alami</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1968&q=80" class="d-block w-100" alt="Pantai 3" height="500">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                            <h5>Sunset Point</h5>
+                            <p>Nikmati matahari terbenam paling spektakuler di kawasan ini</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#destinationCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#destinationCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinasi Wisata -->
+    <section class="py-5" id="destinasi">
+        <div class="container">
+            <h2 class="text-center section-title">Destinasi Wisata Populer</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" class="card-img-top" alt="Pantai Mutiara">
+                        <div class="card-body">
+                            <h5 class="card-title">Pantai Mutiara</h5>
+                            <p class="card-text">Pantai dengan pasir putih halus dan air laut biru kehijauan yang jernih. Cocok untuk berenang dan bersantai.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Rp 150.000/orang</span>
+                                <a href="#pemesanan" class="btn btn-sm btn-primary">Pesan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="card-img-top" alt="Pulau Karang">
+                        <div class="card-body">
+                            <h5 class="card-title">Pulau Karang</h5>
+                            <p class="card-text">Surga bagi penyelam dengan terumbu karang yang indah dan beragam biota laut yang menakjubkan.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Rp 250.000/orang</span>
+                                <a href="#pemesanan" class="btn btn-sm btn-primary">Pesan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="card-img-top" alt="Teluk Penyu">
+                        <div class="card-body">
+                            <h5 class="card-title">Teluk Penyu</h5>
+                            <p class="card-text">Tempat konservasi penyu dengan pantai berpasir hitam yang unik. Anda bisa melihat penyu bertelur di malam hari.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Rp 200.000/orang</span>
+                                <a href="#pemesanan" class="btn btn-sm btn-primary">Pesan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">Lihat Semua Destinasi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri -->
+    <section class="py-5 bg-light" id="galeri">
+        <div class="container">
+            <h2 class="text-center section-title">Galeri Foto</h2>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Galeri 1">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1498855926480-d98e83099315?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Galeri 2">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Galeri 3">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Galeri 4">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Galeri 5">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Galeri 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="py-5" id="testimoni">
+        <div class="container">
+            <h2 class="text-center section-title">Apa Kata Mereka?</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Pengalaman snorkeling di Pulau Karang sangat luar biasa! Airnya jernih dan terumbu karangnya masih sangat alami. Pemandu wisatanya juga sangat profesional."
+                        </div>
+                        <div class="testimonial-author">
+                            <i class="fas fa-user-circle me-2"></i>Rina Wijaya
+                        </div>
+                        <div class="rating text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Pantai Mutiara adalah tempat terbaik untuk liburan keluarga. Anak-anak sangat senang bermain di pasir putihnya yang halus. Kami pasti akan kembali lagi!"
+                        </div>
+                        <div class="testimonial-author">
+                            <i class="fas fa-user-circle me-2"></i>Budi Santoso
+                        </div>
+                        <div class="rating text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Melihat penyu bertelur di Teluk Penyu adalah pengalaman yang sangat mengharukan. Tim Ocean Bliss memberikan penjelasan yang sangat informatif tentang konservasi penyu."
+                        </div>
+                        <div class="testimonial-author">
+                            <i class="fas fa-user-circle me-2"></i>Dewi Lestari
+                        </div>
+                        <div class="rating text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pemesanan -->
+    <section class="booking-section" id="pemesanan">
+        <div class="container">
+            <h2 class="text-center section-title">Formulir Pemesanan</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="booking-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="nama" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="telepon" class="form-label">Nomor Telepon</label>
+                                    <input type="tel" class="form-control" id="telepon" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="destinasi" class="form-label">Pilih Destinasi</label>
+                                    <select class="form-select" id="destinasi" required>
+                                        <option value="" selected disabled>-- Pilih Destinasi --</option>
+                                        <option value="Pantai Mutiara">Pantai Mutiara - Rp 150.000/orang</option>
+                                        <option value="Pulau Karang">Pulau Karang - Rp 250.000/orang</option>
+                                        <option value="Teluk Penyu">Teluk Penyu - Rp 200.000/orang</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="tanggal" class="form-label">Tanggal Kunjungan</label>
+                                    <input type="date" class="form-control" id="tanggal" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="jumlah" class="form-label">Jumlah Orang</label>
+                                    <input type="number" class="form-control" id="jumlah" min="1" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="catatan" class="form-label">Catatan Tambahan</label>
+                                <textarea class="form-control" id="catatan" rows="3"></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Kirim Pemesanan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-title"><i class="fas fa-water me-2"></i>Ocean Bliss</h5>
+                    <p>Menghadirkan pengalaman wisata bahari yang tak terlupakan dengan pelayanan terbaik dan destinasi terpilih.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-title">Tautan</h5>
+                    <a href="#home" class="footer-link">Beranda</a>
+                    <a href="#destinasi" class="footer-link">Destinasi</a>
+                    <a href="#galeri" class="footer-link">Galeri</a>
+                    <a href="#testimoni" class="footer-link">Testimoni</a>
+                    <a href="#pemesanan" class="footer-link">Pemesanan</a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Kontak Kami</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Jl. Pantai Indah No. 123, Bali</p>
+                    <p><i class="fas fa-phone me-2"></i> +62 812 3456 7890</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@oceanbliss.com</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Jam Operasional</h5>
+                    <p>Senin - Jumat: 08.00 - 17.00</p>
+                    <p>Sabtu - Minggu: 07.00 - 19.00</p>
+                    <div class="mt-3">
+                        <img src="https://via.placeholder.com/120x40?text=Payment+Method" alt="Payment Method" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Ocean Bliss. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
